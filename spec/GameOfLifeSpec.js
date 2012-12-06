@@ -30,7 +30,7 @@ describe ("GameOfLife", function() {
       gol.add_living_cell(1,2);
     });
     it("should raise an exception when the cell is out of range", function(){
-      expect(function(){gol.add_living_cell(50,12)}).toThrow("cells are out of range");
+      expect(function(){gol.add_living_cell(50,12)}).toThrow("arguments are not within the range of the board");
     });
   });
 

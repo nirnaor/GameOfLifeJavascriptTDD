@@ -9,7 +9,7 @@ GameOfLife.prototype.board_size = function(){
 };
 
 GameOfLife.prototype.add_living_cell = function(x, y){
-  if (x > this.board_size || y > this.board_size)
+  if (x > this.size || y > this.size)
     throw new Error("arguments are not within the range of the board");
 };
 
