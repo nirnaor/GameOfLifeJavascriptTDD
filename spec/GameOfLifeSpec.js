@@ -27,10 +27,31 @@ describe ("GameOfLife", function() {
 
   describe("add_living_cell",function(){
     it("should add living cells to the board", function(){
-      gol.add_living_cell(1,2);
+      gol.add_living_cell(4,2);
     });
     it("should raise an exception when the cell is out of range", function(){
-      expect(function(){gol.add_living_cell(50,12)}).toThrow("arguments are not within the range of the board");
+      expect(function(){gol.add_living_cell(50, 12)}).toThrow("arguments are not within the range of the board");
+    });
+    it("should raise an exception when the cell is out of range", function(){
+      expect(function(){gol.add_living_cell(3, 5)}).toThrow("arguments are not within the range of the board");
+    });
+  });
+
+
+  describe("is_alive",function(){
+    var gol3;
+    beforeEach(function(){
+      gol3 = new GameOfLife();
+      gol3.add_living_cell(1,2);
+      gol3.add_living_cell(2,2);
+      gol3.add_living_cell(3,2);
+    });
+
+    it("should return true if the checked cell was added to the board",function(){
+      expect(gol3.is_alive(3,2)).toEqual(true);
+    });
+    it("should return false if the checked cell was not added to the board",function(){
+      expect(gol3.is_alive(3,3)).toEqual(false);
     });
   });
 
