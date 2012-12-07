@@ -161,7 +161,6 @@ describe ("GameOfLife", function() {
 
     describe("reproduced", function(){
       var reproduced_matrix;
-
       beforeEach(function(){
         reproduced_matrix = new GameOfLife(10);
         reproduced_matrix.add_living_cell(2, 2);
@@ -179,6 +178,20 @@ describe ("GameOfLife", function() {
         expect(reproduced_matrix.reproduced(3, 2)).toEqual(false);
       });
     });
+  });
 
+  describe("evolve", function(){
+    describe("it should kill all living cells that are: ", function(){
+      describe("under_populated: ", function(){
+      });
+      describe("overcrowded: ", function(){
+      });
+    });
+    
+    describe("it should revive all cells that are:", function(){
+      describe("reproducted", function(){
+      });
+    });
+  
   });
 });
