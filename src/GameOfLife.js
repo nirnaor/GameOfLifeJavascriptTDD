@@ -55,3 +55,16 @@ GameOfLife.prototype.is_alive_and_in_range = function(x,y){
 GameOfLife.prototype.under_populated = function(x, y){
   return this.living_neighbours_amount(x, y) < 2;
 };
+
+GameOfLife.prototype.survives_for_next_generation = function(x, y){
+  return this.living_neighbours_amount(x, y) === 2 || 
+    this.living_neighbours_amount(x, y) === 3;
+};
+GameOfLife.prototype.overcrowded = function(x, y){
+  return this.living_neighbours_amount(x, y) > 3;
+};
+
+GameOfLife.prototype.reproduced = function(x, y){
+  return this.living_neighbours_amount(x, y) === 3 && 
+    this.is_alive_and_in_range(x, y) === false;
+};
