@@ -181,15 +181,39 @@ describe ("GameOfLife", function() {
   });
 
   describe("evolve", function(){
+    var evolve_matrix;
+    beforeEach(function(){
+      evolve_matrix = new GameOfLife(10);
+      evolve_matrix.add_living_cell(4,4);
+      evolve_matrix.add_living_cell(4,5);
+      evolve_matrix.add_living_cell(4,6);
+    });
     describe("it should kill all living cells that are: ", function(){
       describe("under_populated: ", function(){
+        it("kills under populated cells", function(){
+          evolve_matrix.add_living_cell(0, 0);
+          evolve_matrix.add_living_cell(0, 1);
+          evolve_matrix.evolve();
+          expect(evolve_matrix.is_alive(0, 0)).toEqual(false);
+          expect(evolve_matrix.is_alive(0, 1)).toEqual(false);
+        });
       });
       describe("overcrowded: ", function(){
+        it("kills cells that are overcrowded", function(){
+          evolve_matrix.add_living_cell(5, 5);
+          evolve_matrix.add_living_cell(5, 6);
+          evolve_matrix.evolve();
+          expect(evolve_matrix.is_alive(5, 5)).toEqual(false);
+        });
       });
     });
     
     describe("it should revive all cells that are:", function(){
       describe("reproducted", function(){
+        it("revives cells that are reproduced by their neighbours", function(){
+          evolve_matrix.evolve();
+          expect(evolve_matrix.is_alive(5, 5)).toEqual(true);
+        });
       });
     });
   

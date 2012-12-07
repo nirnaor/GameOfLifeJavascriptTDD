@@ -68,3 +68,8 @@ GameOfLife.prototype.reproduced = function(x, y){
   return this.living_neighbours_amount(x, y) === 3 && 
     this.is_alive_and_in_range(x, y) === false;
 };
+
+GameOfLife.prototype.evolve = function(){
+  this.cells_to_kill = new Array();
+  this.cells_to_revive = new Array();
+};
