@@ -15,10 +15,21 @@ function GameOfLife(board_size) {
         throw new Error("arguments are not within the range of the board");
   };
 
-  this.living_neighbours_amount = function(){
+  this.living_neighbours_amount = function(x, y){
     var result = 0;
-    x = arguments[0];
-    y = arguments[1];
+
+    result += this.is_alive_and_in_range(x, y - 1) ? 1 : 0;
+    result += this.is_alive_and_in_range(x - 1, y - 1) ? 1 : 0;
+    result += this.is_alive_and_in_range(x + 1, y - 1) ? 1 : 0;
+
+    result += this.is_alive_and_in_range(x - 1, y) ? 1 : 0;
+    result += this.is_alive_and_in_range(x + 1, y) ? 1 : 0;
+
+    result += this.is_alive_and_in_range(x, y + 1) ? 1 : 0;
+    result += this.is_alive_and_in_range(x - 1, y + 1) ? 1 : 0;
+    result += this.is_alive_and_in_range(x + 1, y + 1) ? 1 : 0;
+
+    return result
   };
 }
 

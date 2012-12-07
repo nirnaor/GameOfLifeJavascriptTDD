@@ -67,29 +67,39 @@ describe ("GameOfLife", function() {
   });
 
 
-  //describe("living_neighbours_amount", function(){
-    //beforeEach(function(){
-      //gol3 = new GameOfLife(20);
-      //gol3.add_living_cell(0,0);
-      //gol3.add_living_cell(0,1);
-      //gol3.add_living_cell(0,2);
-    //});
+  describe("living_neighbours_amount", function(){
+    beforeEach(function(){
+      gol3 = new GameOfLife(20);
+      gol3.add_living_cell(0,0);
+      gol3.add_living_cell(0,1);
+      gol3.add_living_cell(0,2);
+    });
 
-    //it("should return 0 if cell has no living neighbours",function(){
-      //expect(gol3.living_neighbours_amount(5, 5)).toEqual(0);
-    //});
-    //it("should return 1 if cell has 1 living neighbours",function(){
-      //expect(gol3.living_neighbours_amount(0, 2)).toEqual(1);
-    //});
-    //it("should return 2 if cell has 2 living neighbours",function(){
-      //expect(gol3.living_neighbours_amount([0, 1])).toEqual(2);
-    //});
+    it("should return 0 if cell has no living neighbours",function(){
+      expect(gol3.living_neighbours_amount(5, 5)).toEqual(0);
+    });
+    it("should return 1 if cell has 1 living neighbours",function(){
+      expect(gol3.living_neighbours_amount(0, 2)).toEqual(1);
+    });
+    it("should return 2 if cell has 2 living neighbours",function(){
+      expect(gol3.living_neighbours_amount(0, 1)).toEqual(2);
+    });
+    it("should return 8 if cell has 8 living neighbours",function(){
+      gol3.add_living_cell(5,0);
+      gol3.add_living_cell(5,2);
+      gol3.add_living_cell(4,0);
+      gol3.add_living_cell(4,1);
+      gol3.add_living_cell(4,2);
+      gol3.add_living_cell(6,0);
+      gol3.add_living_cell(6,1);
+      gol3.add_living_cell(6,2);
+      expect(gol3.living_neighbours_amount(5, 1)).toEqual(8);
+    });
 
 
-  //});
+  });
 
   describe("is_alive_and_in_range", function(){
-
     beforeEach(function(){
       gol3 = new GameOfLife(20);
       gol3.add_living_cell(0,0);
