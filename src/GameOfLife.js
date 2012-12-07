@@ -33,12 +33,10 @@ function GameOfLife(board_size) {
   };
 }
 
-
 GameOfLife.prototype.add_living_cell = function(x, y){
   this.validate_parameter_in_range.apply(this,[x, y]);
   this.matrix[x][y] = 1;
 };
-
 
 GameOfLife.prototype.is_alive = function(x, y){
   this.validate_parameter_in_range.apply(this, [x,y]);
@@ -52,4 +50,8 @@ GameOfLife.prototype.is_alive_and_in_range = function(x,y){
   catch(e){
     return false
   }
+};
+
+GameOfLife.prototype.under_populated = function(x, y){
+  return this.living_neighbours_amount(x, y) < 2;
 };

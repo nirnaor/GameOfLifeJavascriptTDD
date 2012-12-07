@@ -66,6 +66,24 @@ describe ("GameOfLife", function() {
     });
   });
 
+  describe("is_alive_and_in_range", function(){
+    beforeEach(function(){
+      gol3 = new GameOfLife(20);
+      gol3.add_living_cell(0,0);
+      gol3.add_living_cell(0,1);
+      gol3.add_living_cell(0,2);
+    });
+
+    it("should return true if cell is alive", function(){
+      expect(gol3.is_alive_and_in_range(0, 0)).toEqual(true);
+    });
+    it("should return false if cell is not alive", function(){
+      expect(gol3.is_alive_and_in_range(4, 0)).toEqual(false);
+    });
+    it("should return false if cell is not in range", function(){
+      expect(gol3.is_alive_and_in_range(400, 0)).toEqual(false);
+    });
+  });
 
   describe("living_neighbours_amount", function(){
     beforeEach(function(){
@@ -96,10 +114,10 @@ describe ("GameOfLife", function() {
       expect(gol3.living_neighbours_amount(5, 1)).toEqual(8);
     });
 
-
   });
 
-  describe("is_alive_and_in_range", function(){
+
+  describe("under_populated",function(){
     beforeEach(function(){
       gol3 = new GameOfLife(20);
       gol3.add_living_cell(0,0);
@@ -107,15 +125,20 @@ describe ("GameOfLife", function() {
       gol3.add_living_cell(0,2);
     });
 
-    it("should return true if cell is alive", function(){
-      expect(gol3.is_alive_and_in_range(0, 0)).toEqual(true);
+    it("should return true if a cell has 0 living neighbours", function(){
+      expect(gol3.under_populated(3,3)).toEqual(true);
     });
-    it("should return false if cell is not alive", function(){
-      expect(gol3.is_alive_and_in_range(4, 0)).toEqual(false);
+    it("should return true if a cell has 1 living neighbours", function(){
+      expect(gol3.under_populated(0,0)).toEqual(true);
     });
-    it("should return false if cell is not in range", function(){
-      expect(gol3.is_alive_and_in_range(400, 0)).toEqual(false);
+    it("should return false if a cell has 2 living neighbours", function(){
+      expect(gol3.under_populated(0,1)).toEqual(false);
+    });
+    it("should return false if a cell has more then  2 living neighbours", function(){
+      gol3.add_living_cell(1,2);
+      expect(gol3.under_populated(0,1)).toEqual(false);
     });
   });
+
 
 });
