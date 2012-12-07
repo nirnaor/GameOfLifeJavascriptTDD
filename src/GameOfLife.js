@@ -74,14 +74,14 @@ GameOfLife.prototype.evolve = function(){
   this.cells_to_revive = new Array();
 
   for (var i = 0; i < this.size; i += 1) {
-    for (var j = 0; j < this.size.length; j += 1) {
+    for (var j = 0; j < this.size; j += 1) {
       if(this.is_alive(i,j)){
         if(this.overcrowded(i,j) || this.under_populated(i, j))
           this.cells_to_kill.push([i, j]);
       }
       else
         if(this.reproduced(i, j))
-          this.cells_to_revive([i, j]);
+          this.cells_to_revive.push([i, j]);
     };
   };
 
