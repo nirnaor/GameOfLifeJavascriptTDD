@@ -9,10 +9,16 @@ function GameOfLife(board_size) {
   };
 
   this.validate_parameter_in_range = function(){
-    for (var arg in arguments){
-      if (arguments[arg] > this.size - 1 || arguments[arg] < 0)
+    x = arguments[0];
+    y = arguments[1];
+      if (x > this.size - 1 || x < 0 || y > this.size - 1 || y < 0 )
         throw new Error("arguments are not within the range of the board");
-    }
+  };
+
+  this.living_neighbours_amount = function(){
+    var result = 0;
+    x = arguments[0];
+    y = arguments[1];
   };
 }
 
@@ -23,9 +29,16 @@ GameOfLife.prototype.add_living_cell = function(x, y){
 };
 
 
-GameOfLife.prototype.is_alive = function(x,y){
-  this.validate_parameter_in_range.apply(this,[x, y]);
+GameOfLife.prototype.is_alive = function(x, y){
+  this.validate_parameter_in_range.apply(this, [x,y]);
   return this.matrix[x][y] !== undefined;
 };
 
-
+GameOfLife.prototype.is_alive_and_in_range = function(x,y){
+  try{
+    return this.is_alive(x,y);
+  }
+  catch(e){
+    return false
+  }
+};

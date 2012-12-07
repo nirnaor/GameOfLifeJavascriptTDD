@@ -45,6 +45,7 @@ describe ("GameOfLife", function() {
   });
 
 
+
   describe("is_alive",function(){
     var gol3;
     beforeEach(function(){
@@ -65,5 +66,46 @@ describe ("GameOfLife", function() {
     });
   });
 
+
+  //describe("living_neighbours_amount", function(){
+    //beforeEach(function(){
+      //gol3 = new GameOfLife(20);
+      //gol3.add_living_cell(0,0);
+      //gol3.add_living_cell(0,1);
+      //gol3.add_living_cell(0,2);
+    //});
+
+    //it("should return 0 if cell has no living neighbours",function(){
+      //expect(gol3.living_neighbours_amount(5, 5)).toEqual(0);
+    //});
+    //it("should return 1 if cell has 1 living neighbours",function(){
+      //expect(gol3.living_neighbours_amount(0, 2)).toEqual(1);
+    //});
+    //it("should return 2 if cell has 2 living neighbours",function(){
+      //expect(gol3.living_neighbours_amount([0, 1])).toEqual(2);
+    //});
+
+
+  //});
+
+  describe("is_alive_and_in_range", function(){
+
+    beforeEach(function(){
+      gol3 = new GameOfLife(20);
+      gol3.add_living_cell(0,0);
+      gol3.add_living_cell(0,1);
+      gol3.add_living_cell(0,2);
+    });
+
+    it("should return true if cell is alive", function(){
+      expect(gol3.is_alive_and_in_range(0, 0)).toEqual(true);
+    });
+    it("should return false if cell is not alive", function(){
+      expect(gol3.is_alive_and_in_range(4, 0)).toEqual(false);
+    });
+    it("should return false if cell is not in range", function(){
+      expect(gol3.is_alive_and_in_range(400, 0)).toEqual(false);
+    });
+  });
 
 });
