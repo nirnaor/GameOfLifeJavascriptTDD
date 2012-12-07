@@ -9,8 +9,10 @@ function GameOfLife(board_size) {
   };
 
   this.validate_parameter_in_range = function(parameter){
-    if (parameter > this.size - 1 || parameter < 0)
-      throw new Error("arguments are not within the range of the board");
+    for (var arg in arguments){
+      if (parameter > this.size - 1 || parameter < 0)
+        throw new Error("arguments are not within the range of the board");
+    }
   };
 }
 
