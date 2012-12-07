@@ -32,6 +32,10 @@ describe ("GameOfLife", function() {
     it("should raise an exception when the cell is out of range", function(){
       expect(function(){gol.add_living_cell(50, 12)}).toThrow("arguments are not within the range of the board");
     });
+    it("should not  raise an exception when the cell is in range", function(){
+      var gol2 = new GameOfLife(60);
+      expect(gol2.add_living_cell(50, 12)).toEqual(undefined);
+    });
     it("should raise an exception when the cell is out of range", function(){
       expect(function(){gol.add_living_cell(3, 5)}).toThrow("arguments are not within the range of the board");
     });
@@ -55,6 +59,9 @@ describe ("GameOfLife", function() {
     });
     it("should return false if the checked cell was not added to the board",function(){
       expect(gol3.is_alive(3,3)).toEqual(false);
+    });
+    it("should raise an exception when a negative number is given", function(){
+      expect(function(){gol.is_alive(-1, -2)}).toThrow("arguments are not within the range of the board");
     });
   });
 

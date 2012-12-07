@@ -8,9 +8,9 @@ function GameOfLife(board_size) {
     this.matrix[i] = new Array(this.size);
   };
 
-  this.validate_parameter_in_range = function(parameter){
+  this.validate_parameter_in_range = function(){
     for (var arg in arguments){
-      if (parameter > this.size - 1 || parameter < 0)
+      if (arguments[arg] > this.size - 1 || arguments[arg] < 0)
         throw new Error("arguments are not within the range of the board");
     }
   };
@@ -18,13 +18,13 @@ function GameOfLife(board_size) {
 
 
 GameOfLife.prototype.add_living_cell = function(x, y){
-  this.validate_parameter_in_range(x);
-  this.validate_parameter_in_range(y);
+  this.validate_parameter_in_range.apply(this,[x, y]);
   this.matrix[x][y] = 1;
 };
 
 
 GameOfLife.prototype.is_alive = function(x,y){
+  this.validate_parameter_in_range.apply(this,[x, y]);
   return this.matrix[x][y] !== undefined;
 };
 
