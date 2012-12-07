@@ -12,13 +12,13 @@ describe ("GameOfLife", function() {
   });
   
 
-  describe("board_size", function(){
+  describe("size attribute", function(){
     it("should init the size of the board with the size given by the user", function(){
-      expect(gol.board_size()).toEqual(5);
+      expect(gol.size).toEqual(5);
     });
     it("should init the size of the board with a default value of 10 if not given by the user", function(){
       var gol2 = new GameOfLife();
-      expect(gol2.board_size()).toEqual(10);
+      expect(gol2.size).toEqual(10);
     });
     it("should except only number in constructor ", function(){
       expect(function(){new GameOfLife("string")}).toThrow("can't initialize board size with a parameter which is not a number");
@@ -34,6 +34,9 @@ describe ("GameOfLife", function() {
     });
     it("should raise an exception when the cell is out of range", function(){
       expect(function(){gol.add_living_cell(3, 5)}).toThrow("arguments are not within the range of the board");
+    });
+    it("should raise an exception when a negative number is given", function(){
+      expect(function(){gol.add_living_cell(-1, -2)}).toThrow("arguments are not within the range of the board");
     });
   });
 
