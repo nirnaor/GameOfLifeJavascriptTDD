@@ -75,48 +75,37 @@ GameOfLife.prototype.reproduced = function(x, y){
     this.is_alive_and_in_range(x, y) === false;
 };
 
+
+GameOfLife.prototype.set_cells_value = function (cells_array, value_to_set){
+  for (var k = 0; k < cells_array.length; k += 1) {
+    var x = cells_array[k][0];
+    var y = cells_array[k][1];
+    this.matrix[x][y] = value_to_set;
+  };
+
+};
+
 GameOfLife.prototype.evolve = function(){
-  this.cells_to_kill = new Array();
-  this.cells_to_revive = new Array();
-  this.cells_that_survive = new Array();
+  var cells_to_kill = new Array();
+  var cells_to_revive = new Array();
+  var cells_that_survive = new Array();
 
   for (var i = 0; i < this.size; i += 1) {
     for (var j = 0; j < this.size; j += 1) {
       if(this.is_alive(i,j)){
         if(this.overcrowded(i,j) || this.under_populated(i, j))
-          this.cells_to_kill.push([i, j]);
+          cells_to_kill.push([i, j]);
         else if (this.survives_for_next_generation(i, j))
-          this.cells_that_survive.push([i, j]);
+          cells_that_survive.push([i, j]);
       }
       else
         if(this.reproduced(i, j))
-          this.cells_to_revive.push([i, j]);
+          cells_to_revive.push([i, j]);
     };
   };
 
-
-
-  this.matrix = new Array(this.size);
-  for (var i = 0; i < this.matrix.length; i += 1) {
-    this.matrix[i] = new Array(this.size);
-  };
-
-  for (var i = 0; i < this.cells_to_kill.length; i += 1) {
-    var x = this.cells_to_kill[i][0];
-    var y = this.cells_to_kill[i][1];
-    this.matrix[x][y] = undefined;
-  };
-
-  for (var i = 0; i < this.cells_to_revive.length; i += 1) {
-    var x = this.cells_to_kill[i][0];
-    var y = this.cells_to_kill[i][1];
-    this.matrix[x][y] = 1;
-  };
-
-  for (var i = 0; i < this.cells_that_survive.length; i += 1) {
-    var x = this.cells_that_survive[i][0];
-    var y = this.cells_that_survive[i][1];
-    this.matrix[x][y] = 1;
-  };
-
+  this.init_board(this.size);
+  this.set_cells_value(cells_to_kill, undefined);
+  this.set_cells_value(cells_to_revive, 1);
+  this.set_cells_value(cells_that_survive, 1);
 };
