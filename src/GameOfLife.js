@@ -1,4 +1,8 @@
 function GameOfLife(board_size) {
+  this.init_board(board_size);
+}
+
+GameOfLife.prototype.init_board = function(board_size){
   if (board_size !== undefined && isNaN(board_size))
         throw new Error("can't initialize board size with a parameter which is not a number");
     this.size = board_size || 10;
@@ -7,7 +11,8 @@ function GameOfLife(board_size) {
     for (var i = 0; i < this.matrix.length; i += 1) {
       this.matrix[i] = new Array(this.size);
     };
-}
+};
+
 
 GameOfLife.prototype.validate_parameter_in_range = function(){
     x = arguments[0];
