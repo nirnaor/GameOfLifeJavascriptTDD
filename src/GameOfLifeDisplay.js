@@ -9,17 +9,22 @@ $(document).ready(function(){
     draw(game_of_life.matrix);
   };
 
-  evolve_and_draw();
-
   $('#evolve_and_draw').click(function(){
     evolve_and_draw();
   });
+
+
+  setInterval(function(){
+    evolve_and_draw();
+  },1000);
 
   function createLabel(inner_text){
     return $("<label>").text(inner_text);
   };
 
   function draw(matrix){
+
+    $('#game_of_life_display').html("");
     var result = $("<div>");
     for (var i = 0; i < matrix.length; i += 1) {
       for (var j = 0; j < matrix[i].length; j += 1) {
