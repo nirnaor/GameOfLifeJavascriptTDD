@@ -1,10 +1,9 @@
 $(document).ready(function(){
-  var patterns = new GameOfLifePatterns();
   var displayer = new GameOfLifeDisplayer($('#game_of_life_display'), 
-                                            patterns.create('toad'));
+                                            Patterns.create('toad'));
 
   function init_patterns(){
-    var supported = patterns.supported_patterns();
+    var supported = Patterns.supported_patterns();
     $.each(supported, function(value, text){
       $('#patterns').append(new Option(text, text));
     });
@@ -14,7 +13,7 @@ $(document).ready(function(){
 
   $('#patterns').change(function(pattern){
     var selected_pattern = $('#patterns').val();
-    displayer.change_pattern(patterns.create(selected_pattern));
+    displayer.change_pattern(Patterns.create(selected_pattern));
     displayer.start();
   });
 });

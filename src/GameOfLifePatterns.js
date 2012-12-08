@@ -1,8 +1,7 @@
-function GameOfLifePatterns(){
-  this.supported = ['blinker', 'toad', 'beacon', 'spaceship'];
+function Patterns(){
 }
 
-GameOfLifePatterns.prototype.create = function(pattern){
+Patterns.create = function(pattern){
   if ($.inArray(pattern, this.supported) === false)
     throw new Error("pattern is not supported yet");
   var result = new GameOfLife(10);
@@ -43,6 +42,6 @@ GameOfLifePatterns.prototype.create = function(pattern){
   return result;
 }
 
-GameOfLifePatterns.prototype.supported_patterns = function(){
-  return this.supported;
+Patterns.supported_patterns = function(){
+  return ['blinker', 'toad', 'beacon', 'spaceship'];
 }
