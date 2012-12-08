@@ -9,12 +9,7 @@ GameOfLifeDisplayer.prototype.start = function(){
     self.game_of_life.evolve();
     self.draw(self.game_of_life.matrix);
   },1000);
-  //setInterval(function(){
-    //this.game_of_life.evolve();
-    //this.draw(this.game_of_life.matrix);
-  //}, 1000);
 }
-
 
 GameOfLifeDisplayer.prototype.draw = function(matrix){
     this.container.html("");
