@@ -4,11 +4,17 @@ function GameOfLifeDisplayer(container, game_of_life_instance){
 }
 
 GameOfLifeDisplayer.prototype.start = function(){
+  var self = this;
+  this.intervalID = setInterval(function(){
+    self.game_of_life.evolve();
+    self.draw(self.game_of_life.matrix);
+  },1000);
   //setInterval(function(){
-    this.game_of_life.evolve();
-    this.draw(this.game_of_life.matrix);
+    //this.game_of_life.evolve();
+    //this.draw(this.game_of_life.matrix);
   //}, 1000);
 }
+
 
 GameOfLifeDisplayer.prototype.draw = function(matrix){
     this.container.html("");
