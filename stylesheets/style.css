@@ -1,3 +1,20 @@
-.live{
-  color: blue;
+*{
+    margin: 0;
+    padding: 0;
+    
 }
+
+label{
+    font-size: 150%;
+    
+}
+.live{
+  color: white;
+  background-color: blue;
+}
+.dead{
+  background-color: red;
+  
+}
+#game_of_life_display{
+    margin:10%;
