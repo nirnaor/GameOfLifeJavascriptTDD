@@ -9,19 +9,24 @@ $(document).ready(function(){
     draw(gol_instance.matrix);
   };
 
+
+  function createLabel(inner_text){
+    return $("<label>").text(inner_text);
+  };
+
   function draw(matrix){
-    var result = "";
+    var result = $("<div>");
     for (var i = 0; i < matrix.length; i += 1) {
       for (var j = 0; j < matrix[i].length; j += 1) {
         if (matrix[i][j] === 1)
-          result += "1";
+          result.append(createLabel("1"));
         else
-          result += "0";
+          result.append(createLabel("0"));
       };
-      result += "\n";
+      result.append($("<br>"));
     };
 
-    $('#game_of_life_display').text(result);
+    $('#game_of_life_display').html(result);
 
   };
 
