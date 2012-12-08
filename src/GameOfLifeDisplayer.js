@@ -11,6 +11,11 @@ GameOfLifeDisplayer.prototype.start = function(){
   },1000);
 }
 
+
+GameOfLifeDisplayer.prototype.change_pattern = function(game_of_life_to_set){
+  this.game_of_life = game_of_life_to_set;
+}
+
 GameOfLifeDisplayer.prototype.draw = function(matrix){
     this.container.html("");
     var result = $("<div>");
