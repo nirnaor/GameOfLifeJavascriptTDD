@@ -2,11 +2,13 @@ function GameOfLife(board_size) {
   if (board_size !== undefined && isNaN(board_size))
       throw new Error("can't initialize board size with a parameter which is not a number");
   this.size = board_size || 10;
+  
 
   this.matrix = new Array(this.size);
   for (var i = 0; i < this.matrix.length; i += 1) {
     this.matrix[i] = new Array(this.size);
   };
+
 
   this.validate_parameter_in_range = function(){
     x = arguments[0];
@@ -14,6 +16,8 @@ function GameOfLife(board_size) {
       if (x > this.size - 1 || x < 0 || y > this.size - 1 || y < 0 )
         throw new Error("arguments are not within the range of the board");
   };
+
+
 
   this.living_neighbours_amount = function(x, y){
     var result = 0;
@@ -72,12 +76,15 @@ GameOfLife.prototype.reproduced = function(x, y){
 GameOfLife.prototype.evolve = function(){
   this.cells_to_kill = new Array();
   this.cells_to_revive = new Array();
+  this.cells_that_survive = new Array();
 
   for (var i = 0; i < this.size; i += 1) {
     for (var j = 0; j < this.size; j += 1) {
       if(this.is_alive(i,j)){
         if(this.overcrowded(i,j) || this.under_populated(i, j))
           this.cells_to_kill.push([i, j]);
+        else if (this.survives_for_next_generation(i, j))
+          this.cells_that_survive.push([i, j]);
       }
       else
         if(this.reproduced(i, j))
@@ -85,6 +92,12 @@ GameOfLife.prototype.evolve = function(){
     };
   };
 
+
+
+  this.matrix = new Array(this.size);
+  for (var i = 0; i < this.matrix.length; i += 1) {
+    this.matrix[i] = new Array(this.size);
+  };
 
   for (var i = 0; i < this.cells_to_kill.length; i += 1) {
     var x = this.cells_to_kill[i][0];
@@ -98,5 +111,10 @@ GameOfLife.prototype.evolve = function(){
     this.matrix[x][y] = 1;
   };
 
+  for (var i = 0; i < this.cells_that_survive.length; i += 1) {
+    var x = this.cells_that_survive[i][0];
+    var y = this.cells_that_survive[i][1];
+    this.matrix[x][y] = 1;
+  };
 
 };
