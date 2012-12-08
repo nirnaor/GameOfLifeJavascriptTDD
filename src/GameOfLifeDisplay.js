@@ -1,14 +1,19 @@
 $(document).ready(function(){
   console.log("hello there");
-  var patterns = new GameOfLifePatterns();
+  var game_of_life = new GameOfLifePatterns().create("bla");
 
 
-  function draw_matrix(){
+  function evolve_and_draw(){
     console.log('this is draw matrix');
-    gol_instance = patterns.create("bla");
-    draw(gol_instance.matrix);
+    game_of_life.evolve();
+    draw(game_of_life.matrix);
   };
 
+  evolve_and_draw();
+
+  $('#evolve_and_draw').click(function(){
+    evolve_and_draw();
+  });
 
   function createLabel(inner_text){
     return $("<label>").text(inner_text);
@@ -30,5 +35,4 @@ $(document).ready(function(){
 
   };
 
-  draw_matrix();
 });
