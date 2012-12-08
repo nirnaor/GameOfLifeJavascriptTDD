@@ -82,7 +82,6 @@ GameOfLife.prototype.set_cells_value = function (cells_array, value_to_set){
     var y = cells_array[k][1];
     this.matrix[x][y] = value_to_set;
   };
-
 };
 
 GameOfLife.prototype.evolve = function(){
@@ -106,6 +105,5 @@ GameOfLife.prototype.evolve = function(){
 
   this.init_board(this.size);
   this.set_cells_value(cells_to_kill, undefined);
-  this.set_cells_value(cells_to_revive, 1);
-  this.set_cells_value(cells_that_survive, 1);
+  this.set_cells_value(cells_to_revive.concat(cells_that_survive), 1);
 };
