@@ -43,5 +43,5 @@ Patterns.create = function(pattern){
 }
 
 Patterns.supported_patterns = function(){
-  return ['blinker', 'toad', 'beacon', 'spaceship'];
+  return ['toad', 'blinker', 'beacon', 'spaceship'];
 }

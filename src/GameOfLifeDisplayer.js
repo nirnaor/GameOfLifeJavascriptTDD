@@ -8,7 +8,7 @@ GameOfLifeDisplayer.prototype.start = function(){
   this.intervalID = setInterval(function(){
     self.game_of_life.evolve();
     self.draw(self.game_of_life.matrix);
-  },1000);
+  }, 1000);
 }
 
 
@@ -23,9 +23,9 @@ GameOfLifeDisplayer.prototype.draw = function(matrix){
     for (var i = 0; i < matrix.length; i += 1) {
       for (var j = 0; j < matrix[i].length; j += 1) {
         if (matrix[i][j] === 1)
-          result.append($("<label>").text("1"));
+          result.append($("<label>").attr({class: 'live'}).text("1"));
         else
-          result.append($("<label>").text("0"));
+          result.append($("<label>").attr({class: 'dead'}).text("0"));
       };
       result.append($("<br>"));
     };
